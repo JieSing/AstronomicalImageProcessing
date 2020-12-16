@@ -29,7 +29,7 @@ This code is used to run and store the results of galaxy survey
 
 How to use the code
 The code can only be executed in Spyder IDE, as it includes certain features(e.g. ‘#%%’) that could only be run using the Spyder IDE.
-Run 'pip install photutils' in C drive in the command console to install photutils library.
+Run 'pip install photutils' in C drive in the command console to install photutils library. (https://photutils.readthedocs.io/en/stable/install.html)
 Install scikit-image (https://scikit-image.org/docs/stable/install.html)
 
 Firstly, run the 'mosaic.fits' file in read_image.py. The final data with the noise and bright stars removed would be stored as 'Mosaic_no_blooming20.fits'.
