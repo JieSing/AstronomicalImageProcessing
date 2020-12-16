@@ -31,8 +31,7 @@ def Show_image(Data):
 def Locate_galaxies(Data,N_std):
     """Identify the centre location of the star"""
     global Image_no_noise, centres 
-    #Logarithm function makes the bright sources more distinct
-    Data_log = np.log(np.log(np.log(np.log(Data))))               
+    Data_log = np.log(np.log(np.log(np.log(Data))))                #Logarithm function makes the bright sources more distinct
     threshold = np.mean(Data_log) + N_std*np.std(Data_log)         #Threshold value from which below is considered noise
     Image_no_noise, length = snd.label(Data_log[::-1] > threshold, np.ones((3,3)))
     centres = snd.center_of_mass(Data_log[::-1], Image_no_noise,   #Calculates the centres of the stars
@@ -44,18 +43,18 @@ def Locate_galaxies(Data,N_std):
   
  
 def Show_centres(Data,N_std):
-    """Plot the centre of the stars""" 
+    """Plot the centre of the bright object""" 
     Locate_galaxies(Data,N_std)
     Show_image(Data)
     for x in range(0,len(centres)):
         plt.plot(centres[x][1],centres[x][0],marker='+',color='cyan')
-#       
+ 
         
         
 def Centre_on_galaxy(Data,c,Data_error):
-    """crops the image to get 300x300 pixel on the galaxy"""
+    """Crop the image to get a 300x300 galaxy image """
     global Galaxy_centred_Data, Masking, galaxy_size, centres, Error
-#    cropped image
+    # Crop image
     Galaxy_centred_Data = Data[::-1][int(centres[c][0]-150):int(centres[c][0
                               ]+150)][:,int(centres[c][1]-150):int(centres[c][1]+150)] 
 
@@ -80,11 +79,12 @@ def Calculate_2Dstd(Data,Masking):
         std = np.sqrt(Gauss_fit.y_stddev.value**2 + Gauss_fit.x_stddev.value**2)
         if std > 30:                                                        #Prevents stds being too large
             std = 29
+            
         return std
     
   
 def Pixel_rejection_annulus(N_std):    
-    """ look at the pixel which are above the given std dev and put a mask onto them"""
+    """ Put a mask on the pixel tha exceeds the given std dev """
     Annulus_mask = aperture_and_annulus[1].to_mask(method='center')
     Annulus_shape = Annulus_mask.to_image(shape=((300, 300)))
     Pixels_in_annulus = Galaxy_centred_Data*Annulus_shape
@@ -96,17 +96,17 @@ def Pixel_rejection_annulus(N_std):
 
 
 def Counts_single_galaxy_circular_aperture(Data,c,N_std,Data_error,visualise=False):
-    """calculates thte number of counts in the  one galaxy using the ciruclat """
+    """ Calculate number of counts of a galaxy """
     global count_list, aperture_and_annulus, aperture_measurement, centres
     
     centres = Locate_galaxies(Data,N_std)
     Galaxy_centred_Data, Masking, galaxy_size, Error = Centre_on_galaxy(Data,c,
                                                                 Data_error)
-
-# size of galaxy larger than 6 pixels didff from noise
+    
+    #Reject the galaxy that is smaller than 6 pixel as they can't be differ from noise
     if galaxy_size > 6:  
         std = Calculate_2Dstd(Data,Masking)
-        ##Create the aperture and annulus for the star
+        #Create the aperture and annulus for the galaxy
         aperture_and_annulus = [CircularAperture((150,150), r=2*std),
                             CircularAnnulus((150,150), r_in=3*std, r_out=5*std)]        
         Annulus_mask = Pixel_rejection_annulus(N_std)        
