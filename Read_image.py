@@ -33,8 +33,10 @@ plt.imshow(Data[::-1],'Greys_r',norm=norm)
 #%%
 #Plot the histogram of the image
 plt.hist(Data.flatten(),bins=1000)
-plt.xlim('Value')
-plt.ylim('Relative frequency')
+plt.xlabel('Value')
+plt.ylabel('Relative frequency')
+plt.xlim(0,10000)
+plt.ylim(0,10000000)
 
 #%%
 #Finds the brightest pixel in the image
