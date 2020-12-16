@@ -404,7 +404,7 @@ def Counts_all_galaxies_circular_aperture(Data,N_std,Data_error,Deconvolve=False
     return counts_list,centre_list,error_list, background_list
 
 
-def Counts_all_galaxies_elliptical_aperture(Data,N_std,Data_error,deconvolve=False,psf=None):
+def Counts_all_galaxies_elliptical_aperture(Data,N_std,Data_error,Deconvolve=False,psf=None):
     global centres, counts_list, centre_list, error_list, background_list, Image_no_noise
     """
     Calculates the number of counts of all the galaxies in the image with 
@@ -451,4 +451,5 @@ def Counts_all_galaxies_elliptical_aperture(Data,N_std,Data_error,deconvolve=Fal
             background_list.append(background)
     
     return counts_list,centre_list,error_list, background_list
+
 
