@@ -42,7 +42,7 @@ for y in range(0,len(Data)):
             
 
 #%%
-#Calculate image statistics     
+#Calculates image statistics     
 
 print(np.mean(Data))
 print(np.std(Data))
@@ -54,7 +54,7 @@ print(Data.shape)
 
 #Crops the edges of the image (Noise)
 
-New = []        #Crops the image
+New = []        #The remaining pixels
 
 y = 0
 while y < 4406-424:
@@ -63,13 +63,12 @@ while y < 4406-424:
     y = y + 1
     
 #%%
-#    what percentage of the image are croppped
+#The percentage of the image that are croppped
 New = np.array(New)
-
 print((New.shape[0]*New.shape[1])/(Data.shape[0]*Data.shape[1]))
 
 #%%
-#Write as Fits file 
+#Write the cropped data as Fits file 
 
 plt.imshow(newy)
 hdu = fits.PrimaryHDU(newy)
@@ -78,7 +77,7 @@ hdul.writeto('Mosaic_no_blooming9.fits')
 
 #%%
 
-#calculate the centres of galaxy
+#Calculate the centres of galaxy
 import scipy.ndimage as snd
 Image_no_noise, length = snd.label(Data[::-1] > 25000, np.ones((3,3)))                  # Isolate the stellar object from noise
 centres = snd.center_of_mass(Data[::-1], Image_no_noise, np.arange(1,length+1,1))       # Calculate the centre of the stellar object
@@ -89,12 +88,12 @@ centres = snd.center_of_mass(Data[::-1], Image_no_noise, np.arange(1,length+1,1)
 #%%
 
 
-# masking the blooming stars
+#Mask the blooming stars
 mean = np.median(Data)
 newd = Data.copy()
 meanz = np.full(30,mean)
 
-#shape of the central star is replaced by the mean of image masking
+#Mask the central star with the mean value of image
 for y in range(0,3982):
     newd[y][1180:1210] = meanz
 for y in range(0,39):
@@ -106,20 +105,20 @@ for y in range(2670,2900):
 for y in range(0,27):
     newd[y][782:803] = np.full(803-782,mean)
     
-# next few largest star
-#Next largest star
+
+#Mask the next largest star
 for y in range(2775,3000):
     newd[y][500-19:570+19] = np.full(570-500+38,mean)
     
-#Next star
+#Mask the next star
 for y in range(2250,2420):
     newd[y][700-19:760+19] = np.full(760-700+38,mean)
     
-#Next star
+#Mask the next star
 for y in range(1780,1940):
     newd[y][640-19:690+19] = np.full(690-640+38,mean)
     
-#Next star
+#Mask the next star
 for y in range(3280,3380):
     newd[y][1870-19:1920+19] = np.full(1920-1870+38,mean)
     
