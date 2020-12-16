@@ -25,18 +25,23 @@ Header = FITSdata[0].header
 Data = FITSdata[0].data
 FITSdata.close()            
 
+
 #%%
 #Visualise the data as an image
+
 norm = ImageNormalize(stretch=SqrtStretch())
 plt.imshow(Data[::-1],'Greys_r',norm=norm)
 
+
 #%%
 #Plot the histogram of the image
+
 plt.hist(Data.flatten(),bins=1000)
 plt.xlabel('Value')
 plt.ylabel('Relative frequency')
 plt.xlim(0,10000)
 plt.ylim(0,10000000)
+
 
 #%%
 #Finds the brightest pixel in the image
@@ -60,7 +65,6 @@ print(np.std(Data))
 print(Data.shape)
 
 #%%
-
 #Crops the edges of the image (Noise)
 
 cropped_data = []        #The remaining pixels
@@ -71,23 +75,31 @@ while y < 4406-424:
     cropped_data.append(y_array[242:2378])
     y = y + 1
     
+    
 #%%
 #The percentage of the image that are croppped
+
 cropped_data = np.array(cropped_data)
 print((cropped_data.shape[0]*cropped_data.shape[1])/(Data.shape[0]*Data.shape[1]))
 
+
 #%%
 #Calculate the centres of galaxy
+
 import scipy.ndimage as snd
 Image_no_noise, length = snd.label(cropped_data[::-1] > 25000, np.ones((3,3)))                  # Isolate the stellar object from noise
 centres = snd.center_of_mass(cropped_data[::-1], Image_no_noise, np.arange(1,length+1,1))       # Calculate the centre of the stellar object
 
+
 #%%
 #Mask the blooming stars
+
 mean = np.median(cropped_data)
 new_data = cropped_data.copy()
 
+
 #Mask the central star with the mean value of image
+
 for y in range(0,3982):
     new_data[y][1180:1210] = np.full(30,mean)
 for y in range(0,39):
@@ -123,6 +135,7 @@ for y in range(3280,3380):
 new_data_brighter = np.log(np.log(np.log(np.log(new_data))))
 plt.imshow(new_data_brighter[::-1],'Greys_r')
 
+
 #%%
 #Masks the unusually bright stars 
 
@@ -147,11 +160,14 @@ for p in range(2,len(centres)):
             w = w + 1
         z = z + 1
 
+        
 #%%
-#Visualise the final image     
+#Visualise the final image    
+
 norm = ImageNormalize(stretch=SqrtStretch())
 new_image = np.log(np.log(np.log(np.log(masked_data))))
 plt.imshow(new_image[::-1], 'Greys_r',norm=norm)
+
 
 #%%
 
