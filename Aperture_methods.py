@@ -392,7 +392,7 @@ def Counts_all_galaxies_circular_aperture(Data,N_std,Data_error,Deconvolve=False
     
     #Loop through all centres
     for c in range(0,len(centres)):
-        print(str(c/len(centres))+' % complete')
+        print(str((c/len(centres))*100)+' % complete')
         galaxy_count, count_error, background = Counts_single_galaxy_circular_aperture(
                 Data,c,N_std,Data_error,visualise=False)
         if galaxy_count != 'Galaxy too small':
@@ -441,7 +441,7 @@ def Counts_all_galaxies_elliptical_aperture(Data,N_std,Data_error,Deconvolve=Fal
     error_list = []
     background_list = []
     for c in range(0,len(centres)):
-        print(str(c/len(centres))+' % complete')
+        print(str((c/len(centres))*100)+' % complete')
         galaxy_count, count_error, background = Counts_single_galaxy_elliptical_aperture(
                 Data,c,N_std,Data_error,visualise=False)
         if galaxy_count != 'Galaxy too small':
