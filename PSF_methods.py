@@ -19,8 +19,6 @@ def deconvolve_airydisk(Data,Nstd=3,iterations=10):
     """
     if isinstance(Data,(list,np.ndarray)) is not True:
             raise Exception("Data must be an array")
-    if isinstance(Data[0][0],(int,float)) is not True:
-                raise Exception('Data values must be integers or floats')
     if isinstance(Nstd,(int,float)) is not True:
                 raise Exception('Nstd must be an integer or a float')
     if isinstance(iterations,(int,float)) is not True:
@@ -45,8 +43,6 @@ def deconvolve_gaussian(Data,Nstd=3,iterations=10):
     """
     if isinstance(Data,(list,np.ndarray)) is not True:
             raise Exception("Data must be an array")
-    if isinstance(Data[0][0],(int,float)) is not True:
-                raise Exception('Data values must be integers or floats')
     if isinstance(Nstd,(int,float)) is not True:
                 raise Exception('Nstd must be an integer or a float')
     if isinstance(iterations,(int,float)) is not True:
@@ -71,8 +67,6 @@ def deconvolve_tophat(Data,Nstd=3,iterations=10):
     """
     if isinstance(Data,(list,np.ndarray)) is not True:
             raise Exception("Data must be an array")
-    if isinstance(Data[0][0],(int,float)) is not True:
-                raise Exception('Data values must be integers or floats')
     if isinstance(Nstd,(int,float)) is not True:
                 raise Exception('Nstd must be an integer or a float')
     if isinstance(iterations,(int,float)) is not True:
@@ -81,3 +75,5 @@ def deconvolve_tophat(Data,Nstd=3,iterations=10):
     psf = Tophat2DKernel(Nstd)
     deconvolved_image = rst.richardson_lucy(Data, psf.array, iterations=iterations,clip=False)
     return deconvolved_image
+
+
