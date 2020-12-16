@@ -1,15 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  7 11:09:17 2020
-
-@author: Harry Anthony
-"""
-
-"""
-Created on Mon Dec  7 11:09:17 2020
-
-@author: Harry Anthony
-"""
 
 from astropy.io import fits
 import numpy as np
