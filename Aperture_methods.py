@@ -96,7 +96,7 @@ def Pixel_rejection_annulus(N_std):
 
 
 def Counts_single_galaxy_circular_aperture(Data,c,N_std,Data_error,visualise=False):
-    """ Calculate number of counts of a galaxy """
+    """ Calculate number of counts of a galaxy with a circular aperture"""
     global count_list, aperture_and_annulus, aperture_measurement, centres
     
     centres = Locate_galaxies(Data,N_std)
@@ -137,6 +137,7 @@ def Counts_single_galaxy_circular_aperture(Data,c,N_std,Data_error,visualise=Fal
     
     
 def Counts_single_galaxy_elliptical_aperture(Data,c,N_std,Data_error,visualise=False):
+     """ Calculate number of counts of a galaxy with an elliptical aperture"""
     global count_list, aperture_and_annulus, aperture_measurement, centres
     
     centres = Locate_galaxies(Data,N_std)
@@ -185,6 +186,7 @@ def Counts_single_galaxy_elliptical_aperture(Data,c,N_std,Data_error,visualise=F
       
           
 def Counts_all_galaxies_circular_aperture(Data,N_std,Data_error):
+    """ Count all the galaxy with a circular aperture around them """
     global centres, counts_list
     
     counts_list = []
@@ -204,6 +206,7 @@ def Counts_all_galaxies_circular_aperture(Data,N_std,Data_error):
 
 
 def Counts_all_galaxies_elliptical_aperture(Data,N_std,Data_error):
+    """ Count all the galaxy with an elliptical aperture around them """
     global centres, counts_list, centre_list, error_list, background_list
     
     print(len(centres))
