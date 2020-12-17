@@ -26,7 +26,7 @@ This code utilises the methods from Aperture_methods.py and PSF_methods.py to cr
 
 The code also contains two branches:
 - fits-files (Sontaining the astronomical data used by the code)
-- catalogues (Containing the galaxy surveys the code has created)
+- Catalogues (Containing the galaxy surveys the code has created)
 
 
 
