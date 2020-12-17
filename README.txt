@@ -25,8 +25,8 @@ This file contains several methods for Richardson-Lucy deconvolution of the data
 This code utilises the methods from Aperture_methods.py and PSF_methods.py to create galaxy surveys and write them into a text file (examples are shown in branch 'Catalogues'). The code also reads these galaxy catalgoue text files and uses the data to create a plot of magnitude m against the number of sources below the given magnitude N(m).
 
 The code also contains two branches:
-- fits-file (Sontaining the astronomical data used by the code)
-- Catalogue (Containing the galaxy surveys the code has created)
+- fits-files (Sontaining the astronomical data used by the code)
+- catalogues (Containing the galaxy surveys the code has created)
 
 
 
