@@ -113,7 +113,7 @@ myfile.close()
 
 #%%
 #Read the results from a textfile
-x,y,calibrated_mag,calibrated_mag_err,background = np.loadtxt('Counts_measurement_circular_survey5.txt', dtype=str, skiprows=1,delimiter=',', unpack=True)
+x,y,ra,dec,calibrated_mag,calibrated_mag_err,background = np.loadtxt('Catalogue_elliptical_aperture_and_psf.txt', dtype=str, skiprows=1,delimiter=',', unpack=True)
 calibrated_mag_err = calibrated_mag_err.astype(np.float)
 calibrated_mag = calibrated_mag.astype(np.float)
 
