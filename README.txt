@@ -13,7 +13,7 @@ It plots the histogram of the number of counts, and calculate the mean and stand
 It removes the noise, bright stars and blooming effect from the original image, and save the result as a FITS file.
 
 2) Cluster_generator.py
-This file adds 2D Gaussian stars to a image, in order to investigate the impact of non-uniformly distributed stars on the galaxy catalogue statistics.
+This file adds 2D Gaussian stars to an image, in order to investigate the impact of non-uniformly distributed stars on the galaxy catalogue statistics.
 
 3) Aperture_methods.py
 This file contains several methods which are be used to detect galaxies and measure their number of counts using either circular or elliptical apertures. 
@@ -25,7 +25,7 @@ This file contains several methods for Richardson-Lucy deconvolution of the data
 This code utilises the methods from Aperture_methods.py and PSF_methods.py to create galaxy surveys and write them into a text file (examples are shown in branch 'Catalogues'). The code also reads these galaxy catalgoue text files and uses the data to create a plot of magnitude m against the number of sources below the given magnitude N(m).
 
 The code also contains two branches:
-- fits-files (Sontaining the astronomical data used by the code)
+- fits-files (Containing the astronomical data used by the code)
 - Catalogues (Containing the galaxy surveys the code has created)
 
 
